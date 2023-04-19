@@ -200,6 +200,7 @@ namespace GHelper
         private static void OnTimedEvent(Object? source, ElapsedEventArgs? e)
         {
             Program.settingsForm.RefreshSensors();
+            Program.settingsForm.RefreshSysMonitor();
         }
 
         private void Button120Hz_MouseHover(object? sender, EventArgs e)
@@ -805,6 +806,27 @@ namespace GHelper
             SetGPUMode(ASUSWmi.GPUModeEco);
         }
 
+        private void RefreshSysMonitor(bool force = false)
+        {
+            string cpuCoreUtilization = SysMonitor.GetCPUCoreUsage();
+            string cpuUtil = SysMonitor.GetCPUUsage();
+            string ramUtil = SysMonitor.GetRAMUsage();
+            string cpuAll = SysMonitor.GetCPUCoreUsage();
+
+            Program.settingsForm.BeginInvoke(delegate
+            {
+                cpuUtilization.Text = cpuUtil;
+                ramUtilization.Text = ramUtil;
+
+                //labelBattery.Text = battery;
+            });
+
+
+            //Program.trayIcon.Text = "CPU" + cpuTemp + HardwareMonitor.cpuFan + "\n"
+            //                        + "GPU" + gpuTemp + HardwareMonitor.gpuFan +
+            //                        ((battery.Length > 0) ? ("\n" + battery) : "");
+
+        }
 
         private void RefreshSensors(bool force = false)
         {

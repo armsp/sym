@@ -88,6 +88,11 @@ namespace GHelper
             buttonKeyboard = new RButton();
             pictureKeyboard = new PictureBox();
             labelKeyboard = new Label();
+            labelCPU = new Label();
+            labelRAM = new Label();
+            cpuUtilization = new Label();
+            ramUtilization = new Label();
+            panelSysMonitor = new Panel();
             panelMatrix.SuspendLayout();
             tableLayoutMatrix.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureMatrix).BeginInit();
@@ -995,13 +1000,70 @@ namespace GHelper
             labelKeyboard.TabIndex = 32;
             labelKeyboard.Text = Properties.Strings.LaptopKeyboard;
             // 
+            // labelRAM
+            // 
+            labelRAM.AutoSize = true;
+            labelRAM.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
+            labelRAM.Location = new System.Drawing.Point(25, 10);
+            labelRAM.Name = "labelRAM";
+            labelRAM.Size = new System.Drawing.Size(100, 32);
+            labelRAM.TabIndex = 46;
+            labelRAM.Text = "RAM Utilization:";
+            labelRAM.TextAlign = ContentAlignment.TopLeft;
+            // 
+            // ramUtilization
+            // 
+            ramUtilization.Location = new System.Drawing.Point(42, 10);
+            ramUtilization.Name = "ramUtilization";
+            ramUtilization.Size = new System.Drawing.Size(400, 32);
+            ramUtilization.TabIndex = 47;
+            ramUtilization.TextAlign = ContentAlignment.TopRight;
+            // 
+            // labelCPU
+            // 
+            labelCPU.AutoSize = true;
+            labelCPU.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
+            //labelCPU.ForeColor = SystemColors.ControlDark;
+            labelCPU.Location = new System.Drawing.Point(25, 60);
+            labelCPU.Name = "labelCPU";
+            labelCPU.Size = new System.Drawing.Size(100, 32);
+            labelCPU.TabIndex = 48;
+            labelCPU.Text = "CPU Utilization:";
+            labelCPU.TextAlign = ContentAlignment.TopLeft;
+            // 
+            // cpuUtilization
+            // 
+            cpuUtilization.Location = new System.Drawing.Point(42, 60);
+            cpuUtilization.Name = "cpuUtilization";
+            cpuUtilization.Size = new System.Drawing.Size(400, 32);
+            cpuUtilization.TabIndex = 49;
+            cpuUtilization.TextAlign = ContentAlignment.TopRight;
+
+           
+            //
+            // panelSysMonitor
+            //
+            panelSysMonitor.AutoSize = true;
+            panelSysMonitor.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panelSysMonitor.Controls.Add(labelCPU);
+            panelSysMonitor.Controls.Add(cpuUtilization);
+            panelSysMonitor.Controls.Add(labelRAM);
+            panelSysMonitor.Controls.Add(ramUtilization);
+            panelSysMonitor.Dock = DockStyle.Bottom;
+            panelSysMonitor.Location = new Point(10, 1050);
+            panelSysMonitor.Margin = new Padding(8);
+            panelSysMonitor.Name = "panelSysMonitor";
+            panelSysMonitor.Padding = new Padding(0, 0, 0, 10);
+            panelSysMonitor.Size = new Size(810, 100);
+            panelSysMonitor.TabIndex = 1;
+            // 
             // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(192F, 192F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(830, 1173);
+            ClientSize = new Size(830, 1340); //1173
             Controls.Add(panelFooter);
             Controls.Add(panelBattery);
             Controls.Add(panelMatrix);
@@ -1009,6 +1071,7 @@ namespace GHelper
             Controls.Add(panelScreen);
             Controls.Add(panelGPU);
             Controls.Add(panelPerformance);
+            Controls.Add(panelSysMonitor);
             Margin = new Padding(8, 4, 8, 4);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
@@ -1018,10 +1081,12 @@ namespace GHelper
             Padding = new Padding(10);
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "G-Helper";
+            Text = "SYM";
             Load += Settings_Load;
             panelMatrix.ResumeLayout(false);
             panelMatrix.PerformLayout();
+            panelSysMonitor.ResumeLayout(false);
+            panelSysMonitor.PerformLayout();
             tableLayoutMatrix.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureMatrix).EndInit();
             panelBattery.ResumeLayout(false);
@@ -1110,6 +1175,15 @@ namespace GHelper
         private RButton buttonFans;
         private Label labelMidFan;
         private Label labelModel;
+        //private Label labelCPUUtilization;
+        //private Label labelRAMUtilization;
+        private Panel panelSysMonitor;
+        private Label cpuUtilization;
+        private Label labelCPU;
+        private Label ramUtilization;
+        private Label labelRAM;
         private WinFormsSliderBar.Slider sliderBattery;
+       
+ 
     }
 }
